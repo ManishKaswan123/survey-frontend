@@ -13,6 +13,8 @@ const SubCategory = lazy(
   async () => import('app/pages/module/masterData/subCategory/SubCategories')
 )
 const User = lazy(async () => import('app/pages/module/user/User'))
+const ProgramList = lazy(async () => import('app/pages/module/program/Program'))
+const SectionList = lazy(async () => import('app/pages/module/section/Section'))
 const Products = lazy(async () => import('app/pages/module/masterData/product/Product'))
 const Orders = lazy(async () => import('app/pages/module/masterData/order/Order'))
 const ProductDetail = lazy(async () => import('app/pages/module/masterData/product/ProductDetail'))
@@ -64,6 +66,8 @@ const routeConfigs: RouteConfig[] = [
   {path: '/sub-category', element: <SubCategory />},
   {path: '/category', element: <Categories />},
   {path: '/user', element: <User />},
+  {path: '/program', element: <ProgramList />},
+  {path: '/program/:id', element: <SectionList />},
   {path: '/user/:userId', element: <UserDetailCard />},
   {path: '/product', element: <Products />},
   {path: '/product/:productId', element: <ProductDetail />},
