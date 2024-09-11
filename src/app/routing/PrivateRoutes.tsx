@@ -3,7 +3,6 @@ import {lazy, FC, Suspense} from 'react'
 import {Route, Routes, Navigate} from 'react-router-dom'
 import {MasterLayout} from 'sr/layout/MasterLayout'
 import TopBarProgress from 'react-topbar-progress-indicator'
-// import EightySixResponseDetailsCard from 'app/pages/module/86Response/components/86ResponseDetailsCard'
 
 // Lazy loading components
 const Dashboard = lazy(async () => import('app/pages/module/dashboard/Dashboard'))
@@ -36,6 +35,8 @@ const Chats = lazy(async () => import('app/pages/module/chats/Chats'))
 const EightySixResponseDetailsCard = lazy(
   async () => import('app/pages/module/86Response/components/86ResponseDetailsCard')
 )
+const QuestionPage = lazy(async () => import('app/pages/module/question/question.page'))
+const AnswerPage = lazy(async () => import('app/pages/module/answer/answer.page'))
 
 type RouteConfig = {
   path: string
@@ -79,6 +80,8 @@ const routeConfigs: RouteConfig[] = [
   {path: '/86-response', element: <EightySixResponse />},
   {path: '/86-response/:responseId', element: <EightySixResponseDetailsCard />},
   {path: '/chats', element: <Chats />},
+  {path: '/question', element: <QuestionPage />},
+  {path: '/answer', element: <AnswerPage />},
 ]
 
 const PrivateRoutes: FC = () => {
@@ -87,6 +90,7 @@ const PrivateRoutes: FC = () => {
     <Routes>
       <Route element={<MasterLayout />}>
         <Route path='auth/*' element={<Navigate to='/dashboard' />} />
+
         {routeConfigs.map(({path, element}) => (
           <Route key={path} path={path} element={<SuspensedView>{element}</SuspensedView>} />
         ))}
