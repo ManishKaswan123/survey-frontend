@@ -4,7 +4,7 @@ export interface Program {
   description: string
   details: string
   startDate: string
-  updateDate: string
+  endDate: string
 }
 
 export interface ProgramApiResponse {

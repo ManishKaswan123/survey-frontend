@@ -11,6 +11,8 @@ import {FieldsArray} from 'sr/constants/fields'
 import ProgramCardSkeleton from './components/ProgramCardSkeleton'
 import {FaArrowLeft} from 'react-icons/fa'
 import {useNavigate} from 'react-router-dom'
+import ProgramTable from './components/ProgramTable'
+import ProgramTableSkeleton from './components/ProgramTableSkeleton'
 
 const ProgramList: React.FC = () => {
   const filterFields: FieldsArray = useMemo(
@@ -37,57 +39,138 @@ const ProgramList: React.FC = () => {
         let response = {
           results: [
             {
-              id: '1',
-              name: 'Program 1',
-              description: 'This is a description for Program 1.',
-              details: 'Details of Program 1.',
-              startDate: '2024-07-08T12:12:25.115883',
-              updateDate: '2024-07-12T12:12:25.115911',
+              id: '6',
+              name: 'Blockchain Basics',
+              description: 'Introduction to blockchain technology and cryptocurrencies.',
+              details: 'Understand blockchain architecture and smart contracts.',
+              startDate: '2024-09-15T09:00:00.000Z',
+              endDate: '2024-09-25T17:00:00.000Z',
             },
             {
-              id: '2',
-              name: 'Program 2',
-              description: 'This is a description for Program 2.',
-              details: 'Details of Program 2.',
-              startDate: '2024-06-20T12:12:25.115925',
-              updateDate: '2024-07-08T12:12:25.115928',
+              id: '7',
+              name: 'Cloud Computing 101',
+              description: 'Explore cloud services and deployment models.',
+              details: 'Learn about AWS, Azure, and Google Cloud.',
+              startDate: '2024-09-20T09:00:00.000Z',
+              endDate: '2024-10-10T17:00:00.000Z',
             },
             {
-              id: '1',
-              name: 'Program 1',
-              description: 'This is a description for Program 1.',
-              details: 'Details of Program 1.',
-              startDate: '2024-07-08T12:12:25.115883',
-              updateDate: '2024-07-12T12:12:25.115911',
+              id: '8',
+              name: 'Artificial Intelligence for Beginners',
+              description: 'Introductory course on AI concepts and applications.',
+              details: 'Covers machine learning, neural networks, and deep learning basics.',
+              startDate: '2024-09-10T09:00:00.000Z',
+              endDate: '2024-09-30T17:00:00.000Z',
             },
             {
-              id: '2',
-              name: 'Program 2',
-              description: 'This is a description for Program 2.',
-              details: 'Details of Program 2.',
-              startDate: '2024-06-20T12:12:25.115925',
-              updateDate: '2024-07-08T12:12:25.115928',
+              id: '9',
+              name: 'Cybersecurity Fundamentals',
+              description: 'Learn the basics of securing systems and networks.',
+              details: 'Introduction to encryption, firewalls, and threat mitigation.',
+              startDate: '2024-09-12T09:00:00.000Z',
+              endDate: '2024-09-22T17:00:00.000Z',
             },
             {
-              id: '1',
-              name: 'Program 1',
-              description: 'This is a description for Program 1.',
-              details: 'Details of Program 1.',
-              startDate: '2024-07-08T12:12:25.115883',
-              updateDate: '2024-07-12T12:12:25.115911',
+              id: '10',
+              name: 'Data Science Essentials',
+              description: 'Understand the fundamentals of data analysis and visualization.',
+              details: 'Learn about Python, R, and popular data science libraries.',
+              startDate: '2024-09-18T09:00:00.000Z',
+              endDate: '2024-10-05T17:00:00.000Z',
             },
             {
-              id: '2',
-              name: 'Program 2',
-              description: 'This is a description for Program 2.',
-              details: 'Details of Program 2.',
-              startDate: '2024-06-20T12:12:25.115925',
-              updateDate: '2024-07-08T12:12:25.115928',
+              id: '11',
+              name: 'Internet of Things (IoT) Basics',
+              description: 'Introduction to the concept of connected devices and smart homes.',
+              details: 'Understand how IoT devices communicate and interact.',
+              startDate: '2024-09-08T09:00:00.000Z',
+              endDate: '2024-09-18T17:00:00.000Z',
+            },
+            {
+              id: '12',
+              name: 'Full Stack Web Development',
+              description: 'Learn the essentials of both frontend and backend development.',
+              details: 'Focuses on HTML, CSS, JavaScript, Node.js, and MongoDB.',
+              startDate: '2024-09-22T09:00:00.000Z',
+              endDate: '2024-10-12T17:00:00.000Z',
+            },
+            {
+              id: '13',
+              name: 'Mobile App Development with Flutter',
+              description: 'Build cross-platform mobile applications using Flutter.',
+              details: 'Learn about Dart, Flutter widgets, and state management.',
+              startDate: '2024-09-05T09:00:00.000Z',
+              endDate: '2024-09-20T17:00:00.000Z',
+            },
+            {
+              id: '14',
+              name: 'Big Data Analytics',
+              description: 'Introduction to processing and analyzing large datasets.',
+              details: 'Covers Hadoop, Spark, and real-time data processing techniques.',
+              startDate: '2024-09-15T09:00:00.000Z',
+              endDate: '2024-09-30T17:00:00.000Z',
+            },
+            {
+              id: '15',
+              name: 'DevOps for Beginners',
+              description: 'Understand the principles of DevOps and CI/CD pipelines.',
+              details: 'Focuses on Jenkins, Docker, Kubernetes, and cloud deployment.',
+              startDate: '2024-09-13T09:00:00.000Z',
+              endDate: '2024-09-25T17:00:00.000Z',
+            },
+            {
+              id: '16',
+              name: 'Game Development with Unity',
+              description: 'Learn the fundamentals of 2D and 3D game development.',
+              details: 'Covers C# scripting, physics, and user interaction.',
+              startDate: '2024-09-01T09:00:00.000Z',
+              endDate: '2024-09-21T17:00:00.000Z',
+            },
+            {
+              id: '17',
+              name: 'Machine Learning with Python',
+              description: 'Explore machine learning algorithms and techniques using Python.',
+              details: 'Covers libraries such as scikit-learn, TensorFlow, and Keras.',
+              startDate: '2024-09-07T09:00:00.000Z',
+              endDate: '2024-09-30T17:00:00.000Z',
+            },
+            {
+              id: '18',
+              name: 'UI/UX Design Principles',
+              description: 'Learn the fundamentals of user interface and user experience design.',
+              details: 'Covers wireframing, prototyping, and usability testing.',
+              startDate: '2024-09-10T09:00:00.000Z',
+              endDate: '2024-09-25T17:00:00.000Z',
+            },
+            {
+              id: '19',
+              name: 'Quantum Computing Basics',
+              description: 'An introduction to the principles of quantum computing.',
+              details: 'Understand quantum bits, entanglement, and superposition.',
+              startDate: '2024-09-15T09:00:00.000Z',
+              endDate: '2024-10-01T17:00:00.000Z',
+            },
+            {
+              id: '20',
+              name: 'Digital Marketing Fundamentals',
+              description: 'Learn the basics of SEO, SEM, and content marketing.',
+              details: 'Covers tools such as Google Analytics and social media marketing.',
+              startDate: '2024-09-05T09:00:00.000Z',
+              endDate: '2024-09-18T17:00:00.000Z',
+            },
+            {
+              id: '21',
+              name: 'Introduction to Ethical Hacking',
+              description: 'Learn about penetration testing and securing systems.',
+              details:
+                'Covers ethical hacking techniques, network security, and vulnerability testing.',
+              startDate: '2024-09-10T09:00:00.000Z',
+              endDate: '2024-09-24T17:00:00.000Z',
             },
           ],
           page: 1,
-          limit: 10,
-          totalPages: 2,
+          limit: 15,
+          totalPages: 1,
           totalResults: 15,
         }
 
@@ -122,6 +205,21 @@ const ProgramList: React.FC = () => {
     console.log('Filter applied')
   }
 
+  const handleEdit = (program: Program) => {
+    console.log('Edit program:', program)
+  }
+
+  const handleDelete = (program: Program) => {
+    console.log('Delete program:', program)
+  }
+
+  const handleView = (programId: string) => {
+    navigate(`/section`, {
+      state: {programId},
+    }) // Navigate to program details page
+    console.log('View sections for program:', programId)
+  }
+
   return (
     <div className='container mx-auto px-4 sm:px-8 '>
       <div className='py-6'>
@@ -133,7 +231,7 @@ const ProgramList: React.FC = () => {
             >
               <FaArrowLeft size={22} />
             </button>
-            <h2 className='text-2xl font-semibold leading-tight mb-2 sm:mb-0 sm:mr-4'>Sections</h2>
+            <h2 className='text-2xl font-semibold leading-tight mb-2 sm:mb-0 sm:mr-4'>Program</h2>
           </div>
           <div className='flex items-center'>
             <Button
@@ -161,23 +259,16 @@ const ProgramList: React.FC = () => {
           </div>
         )}
         {loading ? (
-          <div className='flex flex-wrap -mx-2 mb-4'>
-            {Array.from({length: 4}).map((_, index) => (
-              <div key={index} className='w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-2 mb-4'>
-                <ProgramCardSkeleton />
-              </div>
-            ))}
-          </div>
+          <ProgramTableSkeleton />
         ) : error ? (
           <p className='text-red-500'>{error}</p>
         ) : (
-          <div className='flex flex-wrap -mx-2 mb-4'>
-            {programs.map((program) => (
-              <div key={program.id} className='w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-2 mb-4'>
-                <ProgramCard {...program} />
-              </div>
-            ))}
-          </div>
+          <ProgramTable
+            programData={programs}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+            onView={handleView}
+          />
         )}
         {loading ? (
           <PaginationSkeleton />
