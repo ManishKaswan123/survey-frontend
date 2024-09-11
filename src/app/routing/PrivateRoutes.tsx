@@ -60,14 +60,15 @@ const SuspensedView: FC<WithChildren> = ({children}) => {
 }
 
 const routeConfigs: RouteConfig[] = [
+  {path: '/program', element: <ProgramList />},
+  {path: '/section', element: <SectionList />},
+  {path: '/section/:id', element: <SectionList />},
   {path: '/dashboard', element: <Dashboard />},
   {path: '/dashboard/:type', element: <Dashboard />},
   {path: '/business-category', element: <BusinessCategory />},
   {path: '/sub-category', element: <SubCategory />},
   {path: '/category', element: <Categories />},
   {path: '/user', element: <User />},
-  {path: '/program', element: <ProgramList />},
-  {path: '/program/:id', element: <SectionList />},
   {path: '/user/:userId', element: <UserDetailCard />},
   {path: '/product', element: <Products />},
   {path: '/product/:productId', element: <ProductDetail />},

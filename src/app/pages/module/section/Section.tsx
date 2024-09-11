@@ -10,11 +10,153 @@ import Filter from 'sr/helpers/ui-components/Filter'
 import {FieldsArray} from 'sr/constants/fields'
 import PaginationSkeleton from 'sr/helpers/ui-components/dashboardComponents/PaginationSkeleton'
 import {FaArrowLeft} from 'react-icons/fa'
-import {useNavigate} from 'react-router-dom'
+import {useLocation, useNavigate} from 'react-router-dom'
+import SectionTable from './components/SectionTable'
+import {set} from 'react-hook-form'
+
+let program = [
+  {
+    id: '6',
+    name: 'Blockchain Basics',
+    description: 'Introduction to blockchain technology and cryptocurrencies.',
+    details: 'Understand blockchain architecture and smart contracts.',
+    startDate: '2024-09-15T09:00:00.000Z',
+    endDate: '2024-09-25T17:00:00.000Z',
+  },
+  {
+    id: '7',
+    name: 'Cloud Computing 101',
+    description: 'Explore cloud services and deployment models.',
+    details: 'Learn about AWS, Azure, and Google Cloud.',
+    startDate: '2024-09-20T09:00:00.000Z',
+    endDate: '2024-10-10T17:00:00.000Z',
+  },
+  {
+    id: '8',
+    name: 'Artificial Intelligence for Beginners',
+    description: 'Introductory course on AI concepts and applications.',
+    details: 'Covers machine learning, neural networks, and deep learning basics.',
+    startDate: '2024-09-10T09:00:00.000Z',
+    endDate: '2024-09-30T17:00:00.000Z',
+  },
+  {
+    id: '9',
+    name: 'Cybersecurity Fundamentals',
+    description: 'Learn the basics of securing systems and networks.',
+    details: 'Introduction to encryption, firewalls, and threat mitigation.',
+    startDate: '2024-09-12T09:00:00.000Z',
+    endDate: '2024-09-22T17:00:00.000Z',
+  },
+  {
+    id: '10',
+    name: 'Data Science Essentials',
+    description: 'Understand the fundamentals of data analysis and visualization.',
+    details: 'Learn about Python, R, and popular data science libraries.',
+    startDate: '2024-09-18T09:00:00.000Z',
+    endDate: '2024-10-05T17:00:00.000Z',
+  },
+  {
+    id: '11',
+    name: 'Internet of Things (IoT) Basics',
+    description: 'Introduction to the concept of connected devices and smart homes.',
+    details: 'Understand how IoT devices communicate and interact.',
+    startDate: '2024-09-08T09:00:00.000Z',
+    endDate: '2024-09-18T17:00:00.000Z',
+  },
+  {
+    id: '12',
+    name: 'Full Stack Web Development',
+    description: 'Learn the essentials of both frontend and backend development.',
+    details: 'Focuses on HTML, CSS, JavaScript, Node.js, and MongoDB.',
+    startDate: '2024-09-22T09:00:00.000Z',
+    endDate: '2024-10-12T17:00:00.000Z',
+  },
+  {
+    id: '13',
+    name: 'Mobile App Development with Flutter',
+    description: 'Build cross-platform mobile applications using Flutter.',
+    details: 'Learn about Dart, Flutter widgets, and state management.',
+    startDate: '2024-09-05T09:00:00.000Z',
+    endDate: '2024-09-20T17:00:00.000Z',
+  },
+  {
+    id: '14',
+    name: 'Big Data Analytics',
+    description: 'Introduction to processing and analyzing large datasets.',
+    details: 'Covers Hadoop, Spark, and real-time data processing techniques.',
+    startDate: '2024-09-15T09:00:00.000Z',
+    endDate: '2024-09-30T17:00:00.000Z',
+  },
+  {
+    id: '15',
+    name: 'DevOps for Beginners',
+    description: 'Understand the principles of DevOps and CI/CD pipelines.',
+    details: 'Focuses on Jenkins, Docker, Kubernetes, and cloud deployment.',
+    startDate: '2024-09-13T09:00:00.000Z',
+    endDate: '2024-09-25T17:00:00.000Z',
+  },
+  {
+    id: '16',
+    name: 'Game Development with Unity',
+    description: 'Learn the fundamentals of 2D and 3D game development.',
+    details: 'Covers C# scripting, physics, and user interaction.',
+    startDate: '2024-09-01T09:00:00.000Z',
+    endDate: '2024-09-21T17:00:00.000Z',
+  },
+  {
+    id: '17',
+    name: 'Machine Learning with Python',
+    description: 'Explore machine learning algorithms and techniques using Python.',
+    details: 'Covers libraries such as scikit-learn, TensorFlow, and Keras.',
+    startDate: '2024-09-07T09:00:00.000Z',
+    endDate: '2024-09-30T17:00:00.000Z',
+  },
+  {
+    id: '18',
+    name: 'UI/UX Design Principles',
+    description: 'Learn the fundamentals of user interface and user experience design.',
+    details: 'Covers wireframing, prototyping, and usability testing.',
+    startDate: '2024-09-10T09:00:00.000Z',
+    endDate: '2024-09-25T17:00:00.000Z',
+  },
+  {
+    id: '19',
+    name: 'Quantum Computing Basics',
+    description: 'An introduction to the principles of quantum computing.',
+    details: 'Understand quantum bits, entanglement, and superposition.',
+    startDate: '2024-09-15T09:00:00.000Z',
+    endDate: '2024-10-01T17:00:00.000Z',
+  },
+  {
+    id: '20',
+    name: 'Digital Marketing Fundamentals',
+    description: 'Learn the basics of SEO, SEM, and content marketing.',
+    details: 'Covers tools such as Google Analytics and social media marketing.',
+    startDate: '2024-09-05T09:00:00.000Z',
+    endDate: '2024-09-18T17:00:00.000Z',
+  },
+  {
+    id: '21',
+    name: 'Introduction to Ethical Hacking',
+    description: 'Learn about penetration testing and securing systems.',
+    details: 'Covers ethical hacking techniques, network security, and vulnerability testing.',
+    startDate: '2024-09-10T09:00:00.000Z',
+    endDate: '2024-09-24T17:00:00.000Z',
+  },
+]
 
 const SectionList: React.FC = () => {
   const filterFields: FieldsArray = useMemo(
-    () => [{type: 'text', label: 'Section Name', name: 'name', placeholder: 'Section Name'}],
+    () => [
+      {type: 'text', label: 'Section Name', name: 'name', placeholder: 'Section Name'},
+      {
+        type: 'dropdown',
+        label: 'programId',
+        name: program,
+        topLabel: 'Program',
+        placeholder: 'Select Program',
+      },
+    ],
     []
   )
   const [sections, setSections] = useState<Section[]>([])
@@ -28,11 +170,25 @@ const SectionList: React.FC = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false)
   const [filters, setFilters] = useState<SectionFilters>({})
   const navigate = useNavigate()
+  const location = useLocation()
+  const {programId} = location.state || {}
+
+  useEffect(() => {
+    if (programId) {
+      setFilters({...filters, programId})
+    }
+  }, [programId])
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // const response = await fetchSections({limit: itemsPerPage, page: currentPage})
+        const payload = {
+          limit: itemsPerPage,
+          page: currentPage,
+          ...filters,
+        }
+
+        // const response = await fetchSections(payload)
 
         const response = {
           results: [
@@ -67,7 +223,8 @@ const SectionList: React.FC = () => {
               id: '5',
               sectionName: 'Machine Learning',
               sectionLanguage: 'English',
-              description: 'Explore the fundamentals of machine learning and its applications.',
+              description:
+                'Explore the fundamentals of machine learning and its applications.Explore the fundamentals of machine learning and its applications.Explore the fundamentals of machine learning and its applications.Explore the fundamentals of machine learning and its applications.',
             },
             {
               id: '6',
@@ -124,7 +281,7 @@ const SectionList: React.FC = () => {
     }
 
     fetchData()
-  }, [currentPage, itemsPerPage])
+  }, [currentPage, itemsPerPage, filters])
 
   const onPageChange = (page: number) => {
     setCurrentPage(page)
@@ -135,9 +292,24 @@ const SectionList: React.FC = () => {
     setCurrentPage(1)
   }
 
-  const handleApplyFilter = () => {
-    // Implement filter logic
-    console.log('Filter applied')
+  const handleApplyFilter = (newFilters: SectionFilters) => {
+    setFilters(newFilters)
+    setIsFilterVisible(false)
+  }
+
+  const handleEdit = (section: Section) => {
+    console.log('Edit section:', section)
+  }
+
+  const handleDelete = (section: Section) => {
+    console.log('Delete section:', section)
+  }
+
+  const handleView = (sectionId: string) => {
+    navigate(`/question`, {
+      state: {sectionId},
+    })
+    console.log('View questions for section:', sectionId)
   }
 
   return (
@@ -187,11 +359,12 @@ const SectionList: React.FC = () => {
         ) : error ? (
           <p className='text-red-500'>{error}</p>
         ) : (
-          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-4'>
-            {sections.map((section) => (
-              <SectionCard key={section.id} {...section} />
-            ))}
-          </div>
+          <SectionTable
+            sectionData={sections}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+            onView={handleView}
+          />
         )}
         {!loading && totalPages > 1 && (
           <Pagination

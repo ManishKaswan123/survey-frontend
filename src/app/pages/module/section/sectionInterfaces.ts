@@ -15,10 +15,19 @@ export interface SectionApiResponse {
 
 export interface SectionFilters {
   name?: string
+  programId?: string
 }
 
 export interface PayloadType {
   limit?: number
   page?: number
+  sortBy?: string
+}
+
+export interface PayloadType {
+  limit?: number
+  page?: number
+  name?: string
+  programId?: string
   sortBy?: string
 }
